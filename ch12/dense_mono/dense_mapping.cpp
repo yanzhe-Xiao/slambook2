@@ -3,7 +3,7 @@
 #include <fstream>
 
 using namespace std;
-
+#define BOOST_TIMER_ENABLE_DEPRECATED
 #include <boost/timer.hpp>
 
 // for sophus
@@ -286,6 +286,7 @@ bool update(const Mat &ref, const Mat &curr, const SE3d &T_C_R, Mat &depth, Mat 
             // 匹配成功，更新深度图
             updateDepthFilter(Vector2d(x, y), pt_curr, T_C_R, epipolar_direction, depth, depth_cov2);
         }
+    return true;
 }
 
 // 极线搜索
@@ -457,8 +458,8 @@ void evaludateDepth(const Mat &depth_truth, const Mat &depth_estimate) {
 
 void showEpipolarMatch(const Mat &ref, const Mat &curr, const Vector2d &px_ref, const Vector2d &px_curr) {
     Mat ref_show, curr_show;
-    cv::cvtColor(ref, ref_show, CV_GRAY2BGR);
-    cv::cvtColor(curr, curr_show, CV_GRAY2BGR);
+    cv::cvtColor(ref, ref_show, cv::COLOR_GRAY2BGR);
+    cv::cvtColor(curr, curr_show, cv::COLOR_GRAY2BGR);
 
     cv::circle(ref_show, cv::Point2f(px_ref(0, 0), px_ref(1, 0)), 5, cv::Scalar(0, 0, 250), 2);
     cv::circle(curr_show, cv::Point2f(px_curr(0, 0), px_curr(1, 0)), 5, cv::Scalar(0, 0, 250), 2);
@@ -472,8 +473,8 @@ void showEpipolarLine(const Mat &ref, const Mat &curr, const Vector2d &px_ref, c
                       const Vector2d &px_max_curr) {
 
     Mat ref_show, curr_show;
-    cv::cvtColor(ref, ref_show, CV_GRAY2BGR);
-    cv::cvtColor(curr, curr_show, CV_GRAY2BGR);
+    cv::cvtColor(ref, ref_show, cv::COLOR_GRAY2BGR);
+    cv::cvtColor(curr, curr_show, cv::COLOR_GRAY2BGR);
 
     cv::circle(ref_show, cv::Point2f(px_ref(0, 0), px_ref(1, 0)), 5, cv::Scalar(0, 255, 0), 2);
     cv::circle(curr_show, cv::Point2f(px_min_curr(0, 0), px_min_curr(1, 0)), 5, cv::Scalar(0, 255, 0), 2);
