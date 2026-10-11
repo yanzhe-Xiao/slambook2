@@ -13,6 +13,7 @@
 
 # Compiled Dynamic libraries
 *.so
+*.so.*
 *.dylib
 *.dll
 
@@ -26,11 +27,52 @@
 *.a
 *.lib
 
-# Executables
+# Executables & Binaries
 *.exe
 *.out
 *.app
+bin/
+**/bin/
+lib/
+**/lib/
 
+# CMake & Build Artifacts
+build/
+build*/
+**/build/
 *cmake-build-*
-*.idea
-**build**
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+compile_commands.json
+CTestTestfile.cmake
+
+# IDE & Editor Artifacts
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/c_cpp_properties.json
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.clangd/
+.cache/
+
+# Chapter Execution Outputs (Point clouds, Mesh, Maps, Trajectory results)
+*.pcd
+*.ply
+*.bt
+*result*.g2o
+result*.txt
+
+# Logs & Temporary Files
+*.log
+*.log.*
+__pycache__/
+*.pyc
+*.pyo
